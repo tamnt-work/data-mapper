@@ -1,10 +1,10 @@
 {
   "name": "@tamnt-work/data-mapper",
-  "version": "1.0.8",
+  "version": "1.0.13",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && rm -rf dist/tsconfig.tsbuildinfo",
     "start": "ts-node src/index.ts"
   },
   "keywords": [
@@ -17,8 +17,7 @@
     "url": "https://github.com/tamnt-work/data-mapper"
   },
   "files": [
-    "dist",
-    "!dist/**/*.spec.tsbuildinfo"
+    "dist"
   ],
   "author": {
     "name": "TamNT",
