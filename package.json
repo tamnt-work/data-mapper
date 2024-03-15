@@ -8,9 +8,11 @@
     "start": "ts-node src/index.ts"
   },
   "keywords": [
-    "data-mapper",
+    "data mapper",
     "typescript",
-    "data-transformer"
+    "data transformer",
+    "data converter",
+    "data mapping"
   ],
   "repository": {
     "type": "git",
