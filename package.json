@@ -1,6 +1,6 @@
 {
   "name": "@tamnt-work/data-mapper",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
@@ -17,7 +17,8 @@
     "url": "https://github.com/tamnt-work/data-mapper"
   },
   "files": [
-    "dist"
+    "dist",
+    "!dist/**/*.spec.tsbuildinfo"
   ],
   "author": {
     "name": "TamNT",
