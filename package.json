@@ -1,6 +1,6 @@
 {
   "name": "@tamnt-work/data-mapper",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
