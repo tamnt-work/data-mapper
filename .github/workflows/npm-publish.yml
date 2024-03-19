@@ -15,10 +15,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Build source
-        run: |
-          yarn install
-          yarn build
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
 
   publish-npm:
     needs: build
