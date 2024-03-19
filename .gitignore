@@ -2,3 +2,4 @@ node_modules
 dist
 schema
 app
+tw-config.json
