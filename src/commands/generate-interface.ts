@@ -49,9 +49,9 @@ const createMapper = (name: string, input: [string, string][]) => {
   const pascalName = toPascalCase(name);
   const kebabName = kebabCase(pascalName);
 
-  let code = `import { Mapper, type TransformationMap } from '@tamnt-work/data-mapper';\n`;
-  code += `import type { ${pascalName}Entity } from './${kebabName}${config.entitySuffix}';\n`;
-  code += `import type { ${pascalName}Model } from './${kebabName}${config.modelSuffix}';\n\n`;
+  let code = `import { Mapper, type TransformationMap } from '@tamnt-work/data-mapper'\n`;
+  code += `import type { ${pascalName}Entity } from './${kebabName}${config.entitySuffix}'\n`;
+  code += `import type { ${pascalName}Model } from './${kebabName}${config.modelSuffix}'\n\n`;
 
   code += `const transformationMap: TransformationMap<${pascalName}Model, ${pascalName}Entity> = {\n`;
 
@@ -84,7 +84,7 @@ function parseNestedProperties(properties: [string, string][]): string {
   for (const [property, type] of properties) {
     const parts = property.split(".");
     if (parts.length === 1) {
-      output += `${property}: ${type};\n`;
+      output += `${property}: ${type}\n`;
     } else {
       const key = parts.shift()!;
       if (!nestedProperties[key]) {
