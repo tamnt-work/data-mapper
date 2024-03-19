@@ -32,11 +32,7 @@ function extractMappings(input: string): Mapping {
       if (currentKey) {
         const [source, target] = line.split("<=>").map((part) => part.trim());
         const [property, type] = source.split(":").map((part) => part.trim());
-        mapping[currentKey].push([
-          property.includes(".") ? `'${property}'` : property,
-          type,
-          target || property,
-        ]);
+        mapping[currentKey].push([property, type, target || property]);
       }
     }
   }
@@ -60,6 +56,7 @@ export const generateWithSchema = () => {
   const schema = fs.readFileSync(schemaPath, "utf-8");
 
   const mappings = Object.entries(extractMappings(schema));
+  console.log(extractMappings(schema));
 
   mappings.forEach(([key, value]) => {
     const pascalName = toPascalCase(key);
@@ -80,7 +77,10 @@ export const generateWithSchema = () => {
     // Generate Mapper
     generateMapper(
       key,
-      value.map(([property, _type, target]) => [property, target])
+      value.map(([property, _type, target]) => [
+        property.includes(".") ? `'${property}'` : property,
+        target,
+      ])
     );
 
     consola.success(`Generated code for ${pascalName}`);

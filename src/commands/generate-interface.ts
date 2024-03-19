@@ -59,9 +59,9 @@ const createMapper = (name: string, input: [string, string][]) => {
     code += `  ${propertyName}: '${targetPropertyName}',\n`;
   }
 
-  code += `};\n\n`;
+  code += `}\n\n`;
 
-  code += `export const ${pascalName}Mapper = new Mapper<${pascalName}Entity, ${pascalName}Model>(transformationMap);\n`;
+  code += `export const ${pascalName}Mapper = new Mapper<${pascalName}Entity, ${pascalName}Model>(transformationMap)\n`;
 
   const { filePath } = initFolder({
     kebabName,
@@ -99,7 +99,7 @@ function parseNestedProperties(properties: [string, string][]): string {
       .trim()
       .split("\n")
       .map((line) => `  ${line}`)
-      .join("\n")}\n};\n`;
+      .join("\n")}\n}\n`;
   }
 
   return output;
