@@ -1,18 +1,22 @@
 {
   "name": "@tamnt-work/data-mapper",
-  "version": "1.0.15",
+  "version": "1.0.18",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc && rm -rf dist/tsconfig.tsbuildinfo",
     "start": "ts-node src/index.ts"
   },
+  "bin": {
+    "tw": "dist/cli.js"
+  },
   "keywords": [
     "data mapper",
     "typescript",
     "data transformer",
     "data converter",
-    "data mapping"
+    "data mapping",
+    "data mapping with schema"
   ],
   "repository": {
     "type": "git",
@@ -26,8 +30,14 @@
     "email": "contact@tamnt.work"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.0",
     "@types/node": "^20.11.27",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "consola": "^3.2.3",
+    "lodash": "^4.17.21"
   }
 }
