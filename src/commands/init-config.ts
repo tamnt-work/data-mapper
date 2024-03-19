@@ -8,7 +8,7 @@ export const DEFAULT_CONFIG = {
   modelSuffix: ".model",
   mapperSuffix: ".mapper",
   entitySuffix: ".entity",
-  overwrite: false,
+  overwrite: true,
 } as const;
 
 export const initConfig = () => {
