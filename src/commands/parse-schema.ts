@@ -56,7 +56,6 @@ export const generateWithSchema = () => {
   const schema = fs.readFileSync(schemaPath, "utf-8");
 
   const mappings = Object.entries(extractMappings(schema));
-  console.log(extractMappings(schema));
 
   mappings.forEach(([key, value]) => {
     const pascalName = toPascalCase(key);
