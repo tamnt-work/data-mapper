@@ -14,9 +14,66 @@
 yarn add @tamnt-work/data-mapper
 ```
 
-## Usage
+## Usage with CLI
 
-### Define your entity and model
+### Create custom config
+
+```sh
+npx tw init
+```
+
+We will create a `tw-config.json` file in the root of your project.
+
+Default config:
+
+```json
+{
+  "modulePath": "/app",
+  "modelSuffix": ".model",
+  "mapperSuffix": ".mapper",
+  "entitySuffix": ".entity",
+  "overwrite": false
+}
+```
+
+### Create schema
+
+```sh
+npx tw schema init
+```
+
+We will create a `schema/schema.tws` file in your project.
+
+### Define schema
+
+Example:
+
+```yaml
+user:
+  id: string <=> id
+  fullName: string <=> name
+  username: string
+  email: string
+  phoneNumber: string <=> phone
+  companyName: string <=> company.name
+  address: string <=> address.street.name
+  age: number
+
+post:
+  id: string
+  title: string <=> name
+  content: string <=> body
+  views: number
+  createdAt: string <=> date
+```
+
+### Generate with schema
+
+```sh
+npx tw schema generate
+```
+
+#### Output
 
 _user.entity.ts_
 
@@ -26,22 +83,15 @@ export interface UserEntity {
   name: string;
   username: string;
   email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
   phone: string;
-  website: string;
+  age: number;
   company: {
     name: string;
-    catchPhrase: string;
-    bs: string;
+  };
+  address: {
+    street: {
+      name: string;
+    };
   };
 }
 ```
@@ -56,10 +106,10 @@ export interface UserModel {
   email: string;
   phoneNumber: string;
   companyName: string;
+  address: string;
+  age: number;
 }
 ```
-
-### Define transformation map
 
 _user.mapper.ts_
 
@@ -75,6 +125,8 @@ const transformationMap: TransformationMap<UserModel, UserEntity> = {
   email: "email",
   phoneNumber: "phone",
   companyName: "company.name",
+  address: "address.street.name",
+  age: "age",
 };
 
 export const UserMapper = new Mapper<UserEntity, UserModel>(transformationMap);
@@ -86,7 +138,7 @@ Auto suggestion with key and value
 
 ![Alt Text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2htZmt4N2YxMG1wd2t3bGNlcTNqbTNpN3p1cXQ3aHd5MzE3aWttZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BfwfnGfykyN5OEoyj1/giphy.gif)
 
-## Run test
+## Usage with code
 
 ```typescript
 const data = {
