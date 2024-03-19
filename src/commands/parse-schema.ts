@@ -1,7 +1,7 @@
 import consola from "consola";
 import fs from "fs";
 import path from "path";
-import { createFolderIfNotExist, toPascalCase } from "../utils";
+import { cleanModule, createFolderIfNotExist, toPascalCase } from "../utils";
 import {
   generateEntity,
   generateMapper,
@@ -52,6 +52,8 @@ export const generateWithSchema = () => {
     );
     process.exit(1);
   }
+
+  cleanModule();
 
   const schema = fs.readFileSync(schemaPath, "utf-8");
 

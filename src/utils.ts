@@ -50,3 +50,20 @@ export const createFolderIfNotExist = (modulePath: string) => {
 export const toPascalCase = (input: string) => {
   return upperFirst(camelCase(input));
 };
+
+/**
+ * Clean module
+ *
+ * @returns
+ */
+export const cleanModule = () => {
+  const config = getConfig();
+
+  if (!config.overwrite) return;
+
+  const modulePath = path.join(process.cwd(), config.modulePath);
+
+  if (fs.existsSync(modulePath)) {
+    fs.rmdirSync(modulePath, { recursive: true });
+  }
+};
