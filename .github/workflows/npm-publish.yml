@@ -22,6 +22,8 @@ jobs:
       - name: Build
         run: yarn build
 
+      - run: ls -l
+
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -31,7 +33,7 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - run: ls
-      - run: npm publish dist
+      - run: ls -l
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
