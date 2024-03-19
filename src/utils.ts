@@ -59,7 +59,7 @@ export const toPascalCase = (input: string) => {
 export const cleanModule = () => {
   const config = getConfig();
 
-  if (!config.overwrite) return;
+  if (!config.cleanModule) return;
 
   const modulePath = path.join(process.cwd(), config.modulePath);
 

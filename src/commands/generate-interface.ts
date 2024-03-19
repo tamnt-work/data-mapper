@@ -28,8 +28,7 @@ const initFolder = ({
   const filePath = path.join(folderPath, `${kebabName}${suffix}.ts`);
 
   if (!override && fs.existsSync(filePath)) {
-    consola.error(`${filePath} already exists`);
-    process.exit(1);
+    throw new Error(`${filePath} already exists`);
   }
 
   return {
@@ -63,12 +62,16 @@ const createMapper = (name: string, input: [string, string][]) => {
 
   code += `export const ${pascalName}Mapper = new Mapper<${pascalName}Entity, ${pascalName}Model>(transformationMap)\n`;
 
-  const { filePath } = initFolder({
-    kebabName,
-    suffix: config.mapperSuffix,
-    override: config.overwrite,
-  });
-  fs.writeFileSync(filePath, code);
+  try {
+    const { filePath } = initFolder({
+      kebabName,
+      suffix: config.mapperSuffix,
+      override: config.overwrite,
+    });
+    fs.writeFileSync(filePath, code);
+  } catch (error) {
+    consola.error(error.message);
+  }
 };
 
 /**
@@ -129,13 +132,17 @@ const createInterface = (
 
   interfaceContent += "\n}\n";
   const kebabName = kebabCase(pascalName);
-  const { filePath } = initFolder({
-    kebabName,
-    suffix,
-    override: config.overwrite,
-  });
+  try {
+    const { filePath } = initFolder({
+      kebabName,
+      suffix,
+      override: config.overwrite,
+    });
 
-  fs.writeFileSync(filePath, interfaceContent);
+    fs.writeFileSync(filePath, interfaceContent);
+  } catch (error) {
+    consola.error(error.message);
+  }
 };
 
 /**
